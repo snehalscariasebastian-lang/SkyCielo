@@ -1,6 +1,6 @@
 'use client';
 import { useState, useCallback, useEffect } from 'react';
-import { useScroll, useTransform, useMotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
 import VillaScroll from '@/components/VillaScroll';
 import TextOverlay from '@/components/TextOverlay';
 import LoadingScreen from '@/components/LoadingScreen';
@@ -118,7 +118,13 @@ export default function Home() {
             position: 'absolute', inset: 0, opacity: 0.04,
             backgroundImage: 'repeating-linear-gradient(0deg,#f5f0e8 0,#f5f0e8 1px,transparent 1px,transparent 80px), repeating-linear-gradient(90deg,#f5f0e8 0,#f5f0e8 1px,transparent 1px,transparent 80px)',
           }} />
-          <div style={{ position: 'relative', zIndex: 1, padding: '0 8vw 56px' }}>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{ position: 'relative', zIndex: 1, padding: '0 8vw 56px' }}
+          >
             <p style={{ letterSpacing: '0.3em', fontSize: 11, color: '#b59a72', textTransform: 'uppercase', marginBottom: 12 }}>
               Sky Cielo · Our Story
             </p>
@@ -132,7 +138,7 @@ export default function Home() {
             }}>
               About Us
             </h1>
-          </div>
+          </motion.div>
         </section>
 
         <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, #b59a72 40%, transparent)', margin: '0 8vw' }} />
@@ -157,7 +163,12 @@ export default function Home() {
             }} />
           </div>
 
-          <div style={{
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -188,7 +199,7 @@ export default function Home() {
               and lifestyle exist in perfect harmony. Inspired by classical French elegance, we transform every
               plot into the foundation of a legacy and every residence into a statement of refined living.
             </p>
-          </div>
+          </motion.div>
         </section>
 
         {/* ── PAGE 2a: Mission ────────────────────────────────────── */}
@@ -212,7 +223,12 @@ export default function Home() {
             }} />
           </div>
 
-          <div style={{
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{
             direction: 'ltr',
             display: 'flex',
             flexDirection: 'column',
@@ -243,7 +259,7 @@ export default function Home() {
               To deliver premium plotted developments, bespoke villas, and elegant residences that embody
               design excellence and lasting value.
             </p>
-          </div>
+          </motion.div>
         </section>
 
         {/* ── PAGE 2b: We Commit To ───────────────────────────────── */}
@@ -268,7 +284,12 @@ export default function Home() {
             }} />
           </div>
 
-          <div style={{
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{
             position: 'relative', zIndex: 1,
             padding: 'clamp(64px, 8vw, 120px) 8vw',
             maxWidth: 1100,
@@ -333,7 +354,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
 
         <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, #b59a72 40%, transparent)', margin: '0 8vw' }} />
@@ -345,7 +366,13 @@ export default function Home() {
           style={{ padding: 'clamp(60px, 8vw, 120px) 8vw clamp(30px, 4vw, 60px) 8vw' }}
         >
            {/* Left side: Heading */}
-           <div className="flex flex-col md:h-full">
+           <motion.div 
+             initial={{ opacity: 0, y: 30 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true, margin: "-100px" }}
+             transition={{ duration: 0.8, ease: "easeOut" }}
+             className="flex flex-col md:h-full"
+           >
               <div style={{ flexGrow: 1 }}>
                  <h2 style={{
                    fontFamily: "'Inter', sans-serif",
@@ -413,10 +440,16 @@ export default function Home() {
                     © 2025 SkyCielo. All rights reserved.
                  </p>
               </div>
-           </div>
+           </motion.div>
            
            {/* Right side: 2x2 Grid + Image */}
-           <div style={{ display: 'flex', flexDirection: 'column', gap: 60 }}>
+           <motion.div 
+             initial={{ opacity: 0, y: 30 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true, margin: "-100px" }}
+             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+             style={{ display: 'flex', flexDirection: 'column', gap: 60 }}
+           >
               
               {/* 2x2 Grid using CSS Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-[32px] sm:gap-y-[40px] gap-x-[20px]">
@@ -463,7 +496,7 @@ export default function Home() {
                  />
               </div>
 
-           </div>
+           </motion.div>
         </section>
       </div>
 

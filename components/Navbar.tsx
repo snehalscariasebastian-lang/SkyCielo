@@ -4,20 +4,27 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 export default function Navbar() {
   const { scrollY } = useScroll();
   
-  // Animate background opacity from 0 to 0.8 over the first 100px of scroll
-  const bgOpacity = useTransform(scrollY, [0, 100], [0, 0.8]);
-  const blurValue = useTransform(scrollY, [0, 100], [0, 12]);
+  // Only use a subtle blur on scroll, avoiding solid heavy backgrounds
+  const blurValue = useTransform(scrollY, [0, 100], [0, 8]);
 
   return (
-    <motion.nav 
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 lg:px-16 py-6"
-      style={{ 
-        backgroundColor: useTransform(bgOpacity, (o) => `rgba(15,14,12,${o})`),
-        backdropFilter: useTransform(blurValue, (b) => `blur(${b}px)`),
-        WebkitBackdropFilter: useTransform(blurValue, (b) => `blur(${b}px)`),
-      }}
-    >
-      <a href="/" className="pointer-events-auto">
+    <nav className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+      {/* Background layer with feathered edges */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          // A smooth cinematic vignette at the top edge for text readability
+          background: 'linear-gradient(to bottom, rgba(15,14,12,0.6) 0%, rgba(15,14,12,0) 100%)',
+          backdropFilter: useTransform(blurValue, (b) => `blur(${b}px)`),
+          WebkitBackdropFilter: useTransform(blurValue, (b) => `blur(${b}px)`),
+          // Feathers out the blur so there is no sharp horizontal edge at the bottom
+          maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
+        }}
+      />
+
+      <div className="relative flex items-center justify-between px-8 lg:px-16 py-6 w-full">
+        <a href="/" className="pointer-events-auto">
         <img
           src="/logo.png"
           alt="SkyCielo"
@@ -51,6 +58,7 @@ export default function Navbar() {
           Contact Us
         </a>
       </div>
-    </motion.nav>
+      </div>
+    </nav>
   );
 }
